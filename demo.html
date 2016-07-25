@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片展览</title>
+    <style type="text/css">
+        body {
+            height: 100%;
+            background: #eff3f5;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        header {
+            height: 50px;
+            background: #fff;
+            line-height: 50px;
+            text-align: center;
+            /*border-bottom: 1px solid #f3f3f3;*/
+        }
+
+        section {
+            position: absolute;
+            top: 51px;
+            left: 0;
+            right: 0;
+            bottom: 45px;
+            overflow: auto;
+
+        }
+
+        footer {
+            height: 45px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #fff;
+            /*border-top: 1px solid #f3f3f3;*/
+        }
+
+        #im_box {
+            width: 90%;
+            background: #f1f1f1;
+            margin: 0 auto;
+        }
+
+        .im-box {
+            /*background: #fff;*/
+        }
+
+    </style>
+
+    <script src="js/jquery-1.12.3.min.js"></script>
+
+    <script src="js/jquery.lineImage.js"></script>
+</head>
+<body>
+<header>
+    <h2>等高图阵</h2>
+</header>
+<section>
+    <div id="im_box">
+
+    </div>
+
+</section>
+<footer></footer>
+
+<script>
+    $(function () {
+
+        var sourceImages = [
+            "images/1.png",
+            {
+                src: "images/2.png",
+                link: "http://www.baidu.com"
+            },
+            "images/3.png",
+            "images/4.png",
+            "images/5.png",
+            "images/im-adv-1.jpg",
+            "images/im-adv-2.jpg",
+            "images/im-adv-3.jpg",
+            "images/im-adv-4.jpg",
+            "images/im-adv-5.jpg",
+            "images/im-comp-1.jpg",
+            "images/im-comp-2.jpg",
+            "images/im-comp-3.jpg",
+            "images/im-cx.jpg",
+            "images/im-dock-bottom.png",
+            "images/im-dock-top.png",
+            "images/im-dot.png",
+            "images/im-dot-active.png",
+            "images/im-kx.jpg",
+            "images/im-leyu.png",
+            "images/im-logo.png",
+            "images/im-map.jpg",
+            "images/im-next.png",
+            "images/im-pg-next.png",
+            "images/im-pg-prev.png",
+            "images/im-prev.png",
+            "images/im-qr.jpg",
+            "images/im-slide-1.jpg",
+            "images/im-slide-2.jpg",
+            "images/im-slide-3.jpg",
+            "images/im-slide-4.jpg",
+            "images/im-star.png",
+            "images/im-stars-red.png",
+            "images/im-tel.png",
+            "images/im-tip-1.png",
+            "images/im-tip-2.png",
+            "images/im-tip-3.png",
+            "images/im-tip-4.png"
+
+        ];
+
+
+        //写法一
+
+        $('#im_box').lineImages({
+            watch: true,//如果是定宽可以把watch设置为false
+
+            images: sourceImages
+        });
+
+        /*
+
+         //写法二
+
+         $('#im_box').lineImages({
+         watch:true,//如果是定宽可以把watch设置为false
+         }).loadImages(sourceImages);
+         */
+
+
+        /*
+
+         //写法三
+
+         var lm = $('#im_box').lineImages({
+         watch:true,//如果是定宽可以把watch设置为false
+         });
+
+         lm.loadImages(sourceImages);
+
+         */
+
+    })
+
+
+</script>
+</body>
+</html>
