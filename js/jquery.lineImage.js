@@ -22,7 +22,7 @@
             /**
              *
              */
-            images:[]
+            images: []
         }, mmOptions);
 
         var __imgs = [];
@@ -102,11 +102,12 @@
                 rate = 1 / rate;
             }
             for (var i = 0; i < line.images.length; i++) {
-                var im = line.images[i], imDiv = getImageDiv(im);
+                var im = line.images[i], imDiv = getImageDiv(im),
+                    mHeight = rate * processInfo.options.baseHeight;
                 imDiv.css({
                     margin: '0 ' + (processInfo.options.baseGapX / 2) + 'px',
-
-                    height: rate * processInfo.options.baseHeight
+                    width: mHeight / im.height * im.width,
+                    height: mHeight
                 });
 
                 lineDiv.append(imDiv);
@@ -203,6 +204,9 @@
                     }, im, info);
                     processInfo.images[index] = info;
                     l--;
+
+                    //TODO 其实可以不用等到全部加载完再开始处理,只要第一行的图片加载完了就可以开始了
+
                     if (l == 0) {
                         afterInfoLoad();
                     }
@@ -219,15 +223,50 @@
         function getImageInfo(src, callback) {
             var im = $('<img style="display:none;" src="' + src + '"/>');
             $('body').append(im);
-            im.load(function () {
+
+
+            function loadCallback(info) {
+                im.remove();
+                callback(info);
+            }
+
+            /*im.load(function () {
+             var info = {
+             src: src,
+             width: im.width(),
+             height: im.height()
+             };
+             loadCallback(info);
+             });
+             return;*/
+
+            //TODO 增加图片加载失败数据的返回
+            if (im.complete) {
                 var info = {
                     src: src,
                     width: im.width(),
                     height: im.height()
                 };
-                im.remove();
-                callback(info);
-            });
+                loadCallback(info);
+            } else {
+                im.load(function () {
+                    var info = {
+                        src: src,
+                        width: im.width(),
+                        height: im.height()
+                    };
+                    loadCallback(info);
+                }).error(function () {
+                    var info = {
+                        src: src,
+                        width: userOptions.baseHeight,
+                        height: userOptions.baseHeight
+                    };
+                    loadCallback(info);
+                });
+            }
+
+
         }
 
         /*************************************************************/
