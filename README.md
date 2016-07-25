@@ -12,19 +12,25 @@
 
 >
 - 写法一
+```javascript
     $('#im_box').lineImages({
         watch: true,//如果是定宽可以把watch设置为false        
         images: sourceImages
-    });    
-- 写法二   
+    });   
+```
+- 写法二  
+```javascript
     $('#im_box').lineImages({
         watch:true,//如果是定宽可以把watch设置为false
     }).loadImages(sourceImages); 
-- 写法三    
+```
+- 写法三  
+```javascript
     var lm = $('#im_box').lineImages({
         watch:true,//如果是定宽可以把watch设置为false
     });   
     lm.loadImages(sourceImages);
+```
     
 
          
